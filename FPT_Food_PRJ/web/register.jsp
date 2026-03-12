@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="./css/login.css" />
     </head>
     <body>
-<!-- git test -->
+
         <div class="login-card">
 
             <h2>Đăng ký tài khoản</h2>
