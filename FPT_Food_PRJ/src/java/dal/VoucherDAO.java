@@ -23,14 +23,15 @@ public class VoucherDAO extends DBContext {
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                Voucher v = new Voucher();
-                v.setVoucherID(rs.getInt("VoucherID"));
-                v.setCode(rs.getString("code"));
-                v.setDiscountPercent(rs.getInt("DiscountPercent"));
-                v.setStartDate(rs.getTimestamp("startDate").toLocalDateTime());
-                v.setEndDate(rs.getTimestamp("endDate").toLocalDateTime());
-                v.setMinOrderValue(rs.getDouble("minOrderValue"));
-                v.setStatus(rs.getString("status"));
+                Voucher v = Voucher.builder()
+                        .voucherID(rs.getInt("voucherID"))
+                        .code(rs.getString("code"))
+                        .discountPercent(rs.getInt("discountPercent"))
+                        .startDate(rs.getTimestamp("startDate").toLocalDateTime())
+                        .endDate(rs.getTimestamp("endDate").toLocalDateTime())
+                        .minOrderValue(rs.getDouble("minOrderValue"))
+                        .status(rs.getString("status"))
+                        .build();
                 return v;
             }
         } catch (Exception e) {
@@ -38,6 +39,5 @@ public class VoucherDAO extends DBContext {
         }
         return null;
     }
-    
-    
+
 }

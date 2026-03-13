@@ -69,13 +69,12 @@ public class DiningTableDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                DiningTable t = new DiningTable();
-                t.setTableID(rs.getInt("tableID"));
-                t.setTableName(rs.getString("tableName"));
-                t.setSeatCount(rs.getInt("seatCount"));
-                t.setStatus(rs.getString("status"));
-
-                list.add(t);
+                DiningTable t = DiningTable.builder()
+                        .tableID(rs.getInt("tableID"))
+                        .tableName(rs.getString("tableName"))
+                        .seatCount(rs.getInt("seatCount"))
+                        .status(rs.getString("status"))
+                        .build();
             }
 
         } catch (Exception e) {
@@ -214,4 +213,3 @@ public class DiningTableDAO extends DBContext {
         return resultSet;
     }
 }
- 

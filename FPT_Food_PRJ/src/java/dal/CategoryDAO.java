@@ -27,10 +27,12 @@ public class CategoryDAO extends DBContext {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Category c = new Category();
-                c.setCategoryID(rs.getInt("categoryID"));
-                c.setName(rs.getString("name"));
-                c.setDescription(rs.getString("description"));
+                Category c = Category.builder()
+                        .categoryID(rs.getInt("categoryID"))
+                        .name(rs.getString("name"))
+                        .description(rs.getString("description"))
+                        .build();
+
                 list.add(c);
             }
 
@@ -40,7 +42,7 @@ public class CategoryDAO extends DBContext {
 
         return list;
     }
-    
+
     public void insert(Category c) {
 
         String sql = "INSERT INTO Category(name,description) VALUES (?,?)";
@@ -98,5 +100,3 @@ public class CategoryDAO extends DBContext {
         }
     }
 }
-
-
